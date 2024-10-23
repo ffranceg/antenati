@@ -165,7 +165,8 @@ class AntenatiDownloader:
         extension = guess_extension(content_type[0])
         if not extension:
             raise RuntimeError(f'{url}: Unable to guess extension "{content_type[0]}"')
-        label = slugify(canvas['label'])
+        #change save files naming like old prg ArchiveDownload
+        label = canvas['thumbnail']['@id'][-29:-14] 
         filename = f'{label}{extension}'
         with open(filename, 'wb') as img_file:
             img_file.write(http_reply.data)
